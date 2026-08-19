@@ -39,12 +39,12 @@ práctico del notebook de Cálculo Aplicado.
 
 def f2(x, y):
     """Función objetivo: un 'tazón' con mínimo global en el origen."""
-    return x ** 2 + y ** 2
+    return (x-3) ** 2 + (y+2) ** 2
 
 
 def gradiente_f2(x, y):
     """Gradiente de f2: vector de derivadas parciales."""
-    return np.array([2 * x, 2 * y])
+    return np.array([2 ** (x-3), 2 ** (y+2)])
 
 
 def descenso_gradiente(grad_func, punto_inicial, tasa_aprendizaje, iteraciones):
@@ -93,7 +93,7 @@ def figura_3d(historial, titulo="", elev=25, azim=-50):
                color="orange", s=90, label="Inicio", zorder=10)
     ax.scatter([historial[-1, 0]], [historial[-1, 1]], [zs_hist[-1]],
                color="lime", s=90, label="Final", zorder=10)
-    ax.scatter([0], [0], [f2(0, 0)], color="gold", edgecolor="black",
+    ax.scatter([3], [-2], [f2(3, -2)], color="gold", edgecolor="black",
                s=80, label="Mínimo global", zorder=10)
 
     ax.set_xlabel("x")
@@ -168,7 +168,7 @@ if not modo_comparacion:
         else:
             st.success(
                 "El algoritmo **converge** de forma estable hacia el mínimo global "
-                "en (0, 0)."
+                "en (3, -2)."
             )
 
 else:
@@ -188,7 +188,7 @@ else:
                 linewidth=2, marker="o", markersize=2)
         ax.scatter([hist_c[0, 0]], [hist_c[0, 1]], [zs_c[0]],
                    color="orange", s=50, zorder=10)
-        ax.scatter([0], [0], [f2(0, 0)], color="gold", edgecolor="black",
+        ax.scatter([3], [-2], [f2(3, -2)], color="gold", edgecolor="black",
                    s=50, zorder=10)
 
         ax.set_title(f"η = {eta_c}   {icono_c} {estado_c}", fontsize=10)
